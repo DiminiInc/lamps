@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: 50e72085179c4a3438889fc5f4f9b39d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - diode: {fileID: 4017068218155579133, guid: 7e04b73250b53f7498ac94354451a4ca, type: 3}
+  - lamp: {fileID: 2537373755112408807, guid: 16462eaa7a43d6444b4e351825cf8144, type: 3}
+  - source: {fileID: 7118610987287117376, guid: 7011c31401e89df46b508662a1a01d1e,
+      type: 3}
+  - switchCorner: {fileID: 2415023413487924143, guid: 7e797ed3405d7524fa37d475895c2ebf,
+      type: 3}
+  - switchLine: {fileID: 5301306339561736315, guid: 5390bc5bfc79858418dadd3963cc3631,
+      type: 3}
+  - switchBlank: {fileID: 3581501417418845624, guid: 0ddc82bf5f8e5c643b9482420c6a00e5,
+      type: 3}
+  - wireCorner: {fileID: 536231626612961791, guid: 9a6ccea2f783ef341929459f154473cd,
+      type: 3}
+  - wire: {fileID: 2973538501388055002, guid: f07ded2c416f97e498231fbe4d3bc60a, type: 3}
+  - target: {fileID: 5988228680353298766, guid: e04fe2dcd8ceb344797bc7b2b422b4a3,
+      type: 3}
+  - restartButton: {fileID: 1039116872422067926, guid: 1ee162ab90117e54cb7dac147783cc70,
+      type: 3}
+  - textureGray: {fileID: 2800000, guid: b868a1f6591323048a7761c11f9dc9f8, type: 3}
+  - gray: {fileID: 2800000, guid: b868a1f6591323048a7761c11f9dc9f8, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
