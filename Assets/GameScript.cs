@@ -37,6 +37,8 @@ public class GameScript : MonoBehaviour
     private int remainedActions;
     private int score;
     private Button btn;
+    private Text scrTxt; 
+    public Text scoreText;
 
     public Texture2D textureGray;
 
@@ -55,21 +57,21 @@ public class GameScript : MonoBehaviour
     [SerializeField] public Texture gray;
     void OnGUI()
     {
-        GUI.contentColor = Color.gray;
+        //GUI.contentColor = Color.gray;
 
-        GUI.Label(new Rect(10, 10, 150, 20), ("████████████████████████"));
-        GUI.Label(new Rect(10, 20, 150, 20), ("████████████████████████"));
-        GUI.Label(new Rect(10, 30, 150, 20), ("████████████████████████"));
-        GUI.contentColor = Color.black;
-        if (cycle)
-        {
-            GUI.Label(new Rect(10, 10, 100, 20), ("Lamps in line: " + lampCount));
-        } else
-        {
-            GUI.Label(new Rect(10, 10, 100, 20), ("Lamps in line: 0 (" + lampCount+")"));
-        }
-        GUI.Label(new Rect(10, 20, 200, 20), ("Remained actions: "+remainedActions));
-        GUI.Label(new Rect(10, 30, 100, 20), ("Score: "+score));
+        //GUI.Label(new Rect(10, 10, 150, 20), ("████████████████████████"));
+        //GUI.Label(new Rect(10, 20, 150, 20), ("████████████████████████"));
+        //GUI.Label(new Rect(10, 30, 150, 20), ("████████████████████████"));
+        //GUI.contentColor = Color.black;
+        //if (cycle)
+        //{
+        //    GUI.Label(new Rect(10, 10, 100, 20), ("Lamps in line: " + lampCount));
+        //} else
+        //{
+        //    GUI.Label(new Rect(10, 10, 100, 20), ("Lamps in line: 0 (" + lampCount+")"));
+        //}
+        //GUI.Label(new Rect(10, 20, 200, 20), ("Remained actions: "+remainedActions));
+        //GUI.Label(new Rect(10, 30, 100, 20), ("Score: "+score));
 
         //GUI.Label(new Rect(10, 40, 100, 100), gray);
         //GUI.Label(new Rect(10, 10, 100, 100), "Label");
@@ -116,7 +118,7 @@ public class GameScript : MonoBehaviour
         }
         if ((lampCount > lampCountMax) && cycle)
         {
-            remainedActions += 10 * lampCountMax;
+            remainedActions += 10 * (lampCount-lampCountMax);
             lampCountMax = lampCount;
             score += 100;
         }
@@ -136,13 +138,18 @@ public class GameScript : MonoBehaviour
     void Start()
     {
 
-        fieldArray = new Field[100, 100];
+        if (fieldArray == null)
+        {
+            fieldArray = new Field[100, 100];
+        }
         remainedActions = 100;
         score = 0;
         lampCountMax=0;
         btn = restartButton.GetComponent<Button>();
         Debug.Log(btn);
         btn.onClick.AddListener(RestartAction);
+        scrTxt = scoreText.GetComponent<Text>();
+        scoreText.text = "Lamps in line: 0\nRemained actions: 0\nScores: 0";
         for (int i = 0; i < 100; i++)
         {
             for (int j = 0; j < 100; j++)
@@ -162,6 +169,10 @@ public class GameScript : MonoBehaviour
                 fieldArray[51, 49].rotation = 270;
                 fieldArray[50, 49].piece = 2;
                 fieldArray[50, 49].rotation = 0;
+                if (fieldArray[i, j].tile)
+                {
+                    Destroy(fieldArray[i, j].tile);
+                }
                 switch (fieldArray[i, j].piece)
                 {
                     case 0:
@@ -277,7 +288,14 @@ public class GameScript : MonoBehaviour
         targetX = 50;
         targetY = 50;
         position = new Vector2(targetX + 0.5f, targetY + 0.5f);
-        targ = Instantiate(target, position, transform.rotation);
+        if (!targ)
+        {
+            targ = Instantiate(target, position, transform.rotation);
+        }
+        else
+        {
+            targ.transform.position = position;
+        }
     }
 
     // Update is called once per frame
@@ -287,6 +305,7 @@ public class GameScript : MonoBehaviour
         {
             Vector3 cursorInWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));
             Vector2Int targetTile = (Vector2Int)Vector3Int.FloorToInt(cursorInWorld);
+            scoreText.text = "Lamps in line: " + (cycle ? lampCount : 0)+ "\nRemained actions: "+remainedActions + "\nScores: " + score;
             position = new Vector2(targetTile.x + 0.5f, targetTile.y + 0.5f);
             //targ.transform.position = position;
             //GameObject.Find("Main Camera").transform.position = new Vector3(targetTile.x, targetTile.y, -10);

@@ -21,6 +21,8 @@ MonoImporter:
       type: 3}
   - restartButton: {fileID: 1039116872422067926, guid: 1ee162ab90117e54cb7dac147783cc70,
       type: 3}
+  - scoreText: {fileID: 8810988458554410125, guid: d5022a1e3c0a84d4abe5f0953875b999,
+      type: 3}
   - textureGray: {fileID: 2800000, guid: b868a1f6591323048a7761c11f9dc9f8, type: 3}
   - gray: {fileID: 2800000, guid: b868a1f6591323048a7761c11f9dc9f8, type: 3}
   executionOrder: 0
