@@ -149,7 +149,7 @@ public class GameScript : MonoBehaviour
         Debug.Log(btn);
         btn.onClick.AddListener(RestartAction);
         scrTxt = scoreText.GetComponent<Text>();
-        scoreText.text = "Lamps in line: 0\nRemained actions: 0\nScores: 0";
+        scoreText.text = "Lamps in line: 0\nRemained actions: 0\nScore: 0";
         for (int i = 0; i < 100; i++)
         {
             for (int j = 0; j < 100; j++)
@@ -305,7 +305,7 @@ public class GameScript : MonoBehaviour
         {
             Vector3 cursorInWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));
             Vector2Int targetTile = (Vector2Int)Vector3Int.FloorToInt(cursorInWorld);
-            scoreText.text = "Lamps in line: " + (cycle ? lampCount : 0)+ "\nRemained actions: "+remainedActions + "\nScores: " + score;
+            scoreText.text = "Lamps in line: " + (cycle ? lampCount : 0)+ "\nRemained actions: "+remainedActions + "\nScore: " + score;
             position = new Vector2(targetTile.x + 0.5f, targetTile.y + 0.5f);
             //targ.transform.position = position;
             //GameObject.Find("Main Camera").transform.position = new Vector3(targetTile.x, targetTile.y, -10);
