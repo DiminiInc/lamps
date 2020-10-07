@@ -115,6 +115,9 @@ public class GameScript : MonoBehaviour
                 cycle = true;
                 break;
             }
+            if ((checkX + checkNextX) < 0 || (checkX + checkNextX) >= 100 || (checkY + checkNextY) < 0 || (checkY + checkNextY) >= 100){
+                break;
+            }
         }
         if ((lampCount > lampCountMax) && cycle)
         {
@@ -311,138 +314,149 @@ public class GameScript : MonoBehaviour
             //GameObject.Find("Main Camera").transform.position = new Vector3(targetTile.x, targetTile.y, -10);
             if (Input.GetMouseButtonDown(0))
             {
-                if (fieldArray[targetTile.x, targetTile.y].piece != 10)
+                if (targetTile.x >= 0 && targetTile.x < 100 && targetTile.y >= 0 && targetTile.y < 100)
                 {
-                    fieldArray[targetTile.x, targetTile.y].rotation = fieldArray[targetTile.x, targetTile.y].rotation + 90;
-                }
-                if (fieldArray[targetTile.x, targetTile.y].rotation == 360)
-                {
-                    fieldArray[targetTile.x, targetTile.y].rotation = 0;
-                }
-                fieldArray[targetTile.x, targetTile.y].tile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, fieldArray[targetTile.x, targetTile.y].rotation));
-                //Debug.Log(targetTile);
-                switch (fieldArray[targetTile.x, targetTile.y].piece)
-                {
-                    case 0:
-                    case 1:
-                        if (fieldArray[targetTile.x, targetTile.y].rotation == 0 || fieldArray[targetTile.x, targetTile.y].rotation == 180)
-                        {
-                            fieldArray[targetTile.x, targetTile.y].firstX = 1;
-                            fieldArray[targetTile.x, targetTile.y].secondX = -1;
-                            fieldArray[targetTile.x, targetTile.y].firstY = 0;
-                            fieldArray[targetTile.x, targetTile.y].secondY = 0;
-                        }
-                        else
-                        {
-                            fieldArray[targetTile.x, targetTile.y].firstX = 0;
-                            fieldArray[targetTile.x, targetTile.y].secondX = 0;
-                            fieldArray[targetTile.x, targetTile.y].firstY = 1;
-                            fieldArray[targetTile.x, targetTile.y].secondY = -1;
-                        }
-                        break;
-                    //case 1:
+                    if (fieldArray[targetTile.x, targetTile.y].piece != 10)
+                    {
+                        fieldArray[targetTile.x, targetTile.y].rotation = fieldArray[targetTile.x, targetTile.y].rotation + 90;
+                    }
+                    if (fieldArray[targetTile.x, targetTile.y].rotation == 360)
+                    {
+                        fieldArray[targetTile.x, targetTile.y].rotation = 0;
+                    }
+                    fieldArray[targetTile.x, targetTile.y].tile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, fieldArray[targetTile.x, targetTile.y].rotation));
+                    //Debug.Log(targetTile);
+                    switch (fieldArray[targetTile.x, targetTile.y].piece)
+                    {
+                        case 0:
+                        case 1:
+                            if (fieldArray[targetTile.x, targetTile.y].rotation == 0 || fieldArray[targetTile.x, targetTile.y].rotation == 180)
+                            {
+                                fieldArray[targetTile.x, targetTile.y].firstX = 1;
+                                fieldArray[targetTile.x, targetTile.y].secondX = -1;
+                                fieldArray[targetTile.x, targetTile.y].firstY = 0;
+                                fieldArray[targetTile.x, targetTile.y].secondY = 0;
+                            }
+                            else
+                            {
+                                fieldArray[targetTile.x, targetTile.y].firstX = 0;
+                                fieldArray[targetTile.x, targetTile.y].secondX = 0;
+                                fieldArray[targetTile.x, targetTile.y].firstY = 1;
+                                fieldArray[targetTile.x, targetTile.y].secondY = -1;
+                            }
+                            break;
+                        //case 1:
 
-                    //    break;
-                    case 2:
-                    case 3:
-                        if (fieldArray[targetTile.x, targetTile.y].rotation == 0 || fieldArray[targetTile.x, targetTile.y].rotation == 180)
-                        {
-                            fieldArray[targetTile.x, targetTile.y].firstX = 1;
-                            fieldArray[targetTile.x, targetTile.y].secondX = -1;
-                            fieldArray[targetTile.x, targetTile.y].firstY = 0;
-                            fieldArray[targetTile.x, targetTile.y].secondY = 0;
-                        }
-                        else
-                        {
-                            fieldArray[targetTile.x, targetTile.y].firstX = 0;
-                            fieldArray[targetTile.x, targetTile.y].secondX = 0;
-                            fieldArray[targetTile.x, targetTile.y].firstY = 1;
-                            fieldArray[targetTile.x, targetTile.y].secondY = -1;
-                        }
-                        break;
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                    case 8:
-                    case 9:
-                        switch (fieldArray[targetTile.x, targetTile.y].rotation)
-                        {
-                            case 0:
-                                fieldArray[targetTile.x, targetTile.y].firstX = -1;
-                                fieldArray[targetTile.x, targetTile.y].secondX = 0;
-                                fieldArray[targetTile.x, targetTile.y].firstY = 0;
-                                fieldArray[targetTile.x, targetTile.y].secondY = -1;
-                                break;
-                            case 90:
+                        //    break;
+                        case 2:
+                        case 3:
+                            if (fieldArray[targetTile.x, targetTile.y].rotation == 0 || fieldArray[targetTile.x, targetTile.y].rotation == 180)
+                            {
                                 fieldArray[targetTile.x, targetTile.y].firstX = 1;
-                                fieldArray[targetTile.x, targetTile.y].secondX = 0;
+                                fieldArray[targetTile.x, targetTile.y].secondX = -1;
                                 fieldArray[targetTile.x, targetTile.y].firstY = 0;
+                                fieldArray[targetTile.x, targetTile.y].secondY = 0;
+                            }
+                            else
+                            {
+                                fieldArray[targetTile.x, targetTile.y].firstX = 0;
+                                fieldArray[targetTile.x, targetTile.y].secondX = 0;
+                                fieldArray[targetTile.x, targetTile.y].firstY = 1;
                                 fieldArray[targetTile.x, targetTile.y].secondY = -1;
-                                break;
-                            case 180:
-                                fieldArray[targetTile.x, targetTile.y].firstX = 1;
-                                fieldArray[targetTile.x, targetTile.y].secondX = 0;
-                                fieldArray[targetTile.x, targetTile.y].firstY = 0;
-                                fieldArray[targetTile.x, targetTile.y].secondY = 1;
-                                break;
-                            case 270:
-                                fieldArray[targetTile.x, targetTile.y].firstX = -1;
-                                fieldArray[targetTile.x, targetTile.y].secondX = 0;
-                                fieldArray[targetTile.x, targetTile.y].firstY = 0;
-                                fieldArray[targetTile.x, targetTile.y].secondY = 1;
-                                break;
-                        }
-                        break;
-                    case 10:
-                        remainedActions++;
-                        score--;
-                        //if (fieldArray[targetTile.x, targetTile.y].rotation == 0 || fieldArray[targetTile.x, targetTile.y].rotation == 180)
-                        //{
-                        //    fieldArray[targetTile.x, targetTile.y].firstX = 1;
-                        //    fieldArray[targetTile.x, targetTile.y].secondX = -1;
-                        //    fieldArray[targetTile.x, targetTile.y].firstY = 0;
-                        //    fieldArray[targetTile.x, targetTile.y].secondY = 0;
-                        //}
-                        //else
-                        //{
-                        //    fieldArray[targetTile.x, targetTile.y].firstX = 0;
-                        //    fieldArray[targetTile.x, targetTile.y].secondX = 0;
-                        //    fieldArray[targetTile.x, targetTile.y].firstY = 1;
-                        //    fieldArray[targetTile.x, targetTile.y].secondY = -1;
-                        //}
-                        break;
+                            }
+                            break;
+                        case 4:
+                        case 5:
+                        case 6:
+                        case 7:
+                        case 8:
+                        case 9:
+                            switch (fieldArray[targetTile.x, targetTile.y].rotation)
+                            {
+                                case 0:
+                                    fieldArray[targetTile.x, targetTile.y].firstX = -1;
+                                    fieldArray[targetTile.x, targetTile.y].secondX = 0;
+                                    fieldArray[targetTile.x, targetTile.y].firstY = 0;
+                                    fieldArray[targetTile.x, targetTile.y].secondY = -1;
+                                    break;
+                                case 90:
+                                    fieldArray[targetTile.x, targetTile.y].firstX = 1;
+                                    fieldArray[targetTile.x, targetTile.y].secondX = 0;
+                                    fieldArray[targetTile.x, targetTile.y].firstY = 0;
+                                    fieldArray[targetTile.x, targetTile.y].secondY = -1;
+                                    break;
+                                case 180:
+                                    fieldArray[targetTile.x, targetTile.y].firstX = 1;
+                                    fieldArray[targetTile.x, targetTile.y].secondX = 0;
+                                    fieldArray[targetTile.x, targetTile.y].firstY = 0;
+                                    fieldArray[targetTile.x, targetTile.y].secondY = 1;
+                                    break;
+                                case 270:
+                                    fieldArray[targetTile.x, targetTile.y].firstX = -1;
+                                    fieldArray[targetTile.x, targetTile.y].secondX = 0;
+                                    fieldArray[targetTile.x, targetTile.y].firstY = 0;
+                                    fieldArray[targetTile.x, targetTile.y].secondY = 1;
+                                    break;
+                            }
+                            break;
+                        case 10:
+                            remainedActions++;
+                            score--;
+                            //if (fieldArray[targetTile.x, targetTile.y].rotation == 0 || fieldArray[targetTile.x, targetTile.y].rotation == 180)
+                            //{
+                            //    fieldArray[targetTile.x, targetTile.y].firstX = 1;
+                            //    fieldArray[targetTile.x, targetTile.y].secondX = -1;
+                            //    fieldArray[targetTile.x, targetTile.y].firstY = 0;
+                            //    fieldArray[targetTile.x, targetTile.y].secondY = 0;
+                            //}
+                            //else
+                            //{
+                            //    fieldArray[targetTile.x, targetTile.y].firstX = 0;
+                            //    fieldArray[targetTile.x, targetTile.y].secondX = 0;
+                            //    fieldArray[targetTile.x, targetTile.y].firstY = 1;
+                            //    fieldArray[targetTile.x, targetTile.y].secondY = -1;
+                            //}
+                            break;
+                    }
+                    remainedActions--;
+                    score++;
                 }
-                remainedActions--;
-                score++;
             }
             if (Input.GetKeyDown("left"))
             {
-                //replace rail
-                targetX = targetX - 1;
-                position = new Vector2(targetX + 0.5f, targetY + 0.5f);
-                targ.transform.position = position;
+                if (targetX > 0)
+                {
+                    targetX = targetX - 1;
+                    position = new Vector2(targetX + 0.5f, targetY + 0.5f);
+                    targ.transform.position = position;
+                }
             }
             if (Input.GetKeyDown("up"))
             {
-                //replace rail
-                targetY = targetY + 1;
-                position = new Vector2(targetX + 0.5f, targetY + 0.5f);
-                targ.transform.position = position;
+                if (targetY < 99)
+                {
+                    targetY = targetY + 1;
+                    position = new Vector2(targetX + 0.5f, targetY + 0.5f);
+                    targ.transform.position = position;
+                }
             }
             if (Input.GetKeyDown("right"))
             {
-                //replace rail
-                targetX = targetX + 1;
-                position = new Vector2(targetX + 0.5f, targetY + 0.5f);
-                targ.transform.position = position;
+                if (targetX < 99)
+                {
+                    targetX = targetX + 1;
+                    position = new Vector2(targetX + 0.5f, targetY + 0.5f);
+                    targ.transform.position = position;
+                }
             }
             if (Input.GetKeyDown("down"))
             {
-                //replace rail
-                targetY = targetY - 1;
-                position = new Vector2(targetX + 0.5f, targetY + 0.5f);
-                targ.transform.position = position;
+                if (targetY > 0)
+                {
+                    targetY = targetY - 1;
+                    position = new Vector2(targetX + 0.5f, targetY + 0.5f);
+                    targ.transform.position = position;
+                }
             }
             GameObject.Find("Main Camera").transform.position = new Vector3(targetX, targetY, -10);
             if (Input.GetKeyDown("space"))
