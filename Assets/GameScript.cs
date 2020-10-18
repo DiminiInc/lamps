@@ -304,11 +304,11 @@ public class GameScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        scoreText.text = "Lamps in line: " + (cycle ? lampCount : 0) + "\nRemained actions: " + remainedActions + "\nScore: " + score;
         if (remainedActions > 0)
         {
             Vector3 cursorInWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));
             Vector2Int targetTile = (Vector2Int)Vector3Int.FloorToInt(cursorInWorld);
-            scoreText.text = "Lamps in line: " + (cycle ? lampCount : 0)+ "\nRemained actions: "+remainedActions + "\nScore: " + score;
             position = new Vector2(targetTile.x + 0.5f, targetTile.y + 0.5f);
             //targ.transform.position = position;
             //GameObject.Find("Main Camera").transform.position = new Vector3(targetTile.x, targetTile.y, -10);
