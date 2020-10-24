@@ -44,6 +44,11 @@ public class GameScript : MonoBehaviour
 
     private Vector2 sourcePosition;
 
+
+    public float smoothTime = 0.5F;
+    private Vector3 velocity = Vector3.zero;
+
+
     struct Field
     {
         public int rotation;
@@ -458,7 +463,7 @@ public class GameScript : MonoBehaviour
                     targ.transform.position = position;
                 }
             }
-            GameObject.Find("Main Camera").transform.position = new Vector3(targetX, targetY, -10);
+            GameObject.Find("Main Camera").transform.position = Vector3.SmoothDamp(GameObject.Find("Main Camera").transform.position, new Vector3(targetX, targetY, -10), ref velocity, smoothTime);
             if (Input.GetKeyDown("space"))
             {
                 if (fieldArray[targetX, targetY].piece != 10)
